@@ -1,17 +1,12 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Carrito {
-    private int id;
-    private ArrayList<ItemCarrito> items;
+    private final ArrayList<ItemCarrito> items;
 
-    public Carrito(int id) {
-        if(id <= 0) {
-            throw new IllegalArgumentException("El ID del carrito debe ser mayor que 0.");
-        }
-
-        this.id = id;
+    public Carrito() {
         this.items = new ArrayList<>();
     }
 
@@ -22,7 +17,7 @@ public class Carrito {
 
         if (this.items.contains(item)) {
             for (ItemCarrito existingItem : items) {
-                if (existingItem.getProducto().getId() == item.getProducto().getId()) {
+                if (existingItem.getProducto().getNombre().equals(item.getProducto().getNombre())) {
                     existingItem.setCantidad(existingItem.getCantidad() + item.getCantidad());
                     return true;
                 }
@@ -41,7 +36,7 @@ public class Carrito {
         }
 
         for (ItemCarrito existingItem : items) {
-            if (existingItem.getProducto().getId() == item.getProducto().getId()) {
+            if (existingItem.getProducto().getNombre().equals(item.getProducto().getNombre())) {
                 items.remove(existingItem);
                 return true;
             }
@@ -58,19 +53,7 @@ public class Carrito {
         return total;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public ArrayList<ItemCarrito> getItems() {
         return items;
-    }
-
-    public void setItems(ArrayList<ItemCarrito> items) {
-        this.items = items;
     }
 }

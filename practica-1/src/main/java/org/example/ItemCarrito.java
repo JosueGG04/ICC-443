@@ -5,13 +5,12 @@ public class ItemCarrito {
     private int cantidad;
 
     public ItemCarrito(Producto producto, int cantidad) {
-        if (cantidad < 0) {
-            throw new IllegalArgumentException("La cantidad no puede ser negativa.");
+        if (cantidad <= 0) {
+            throw new IllegalArgumentException("La cantidad no puede ser negativa o zero.");
         }
         if (producto == null) {
             throw new IllegalArgumentException("El producto no puede ser nulo.");
         }
-
         this.producto = producto;
         this.cantidad = cantidad;
     }
@@ -21,6 +20,9 @@ public class ItemCarrito {
     }
 
     public void setProducto(Producto producto) {
+        if (producto == null) {
+            throw new IllegalArgumentException("El producto no puede ser nulo.");
+        }
         this.producto = producto;
     }
 
@@ -29,6 +31,9 @@ public class ItemCarrito {
     }
 
     public void setCantidad(int cantidad) {
+        if (cantidad <= 0) {
+            throw new IllegalArgumentException("La cantidad no puede ser negativa o zero.");
+        }
         this.cantidad = cantidad;
     }
 }
